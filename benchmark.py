@@ -59,7 +59,7 @@ def main():
         if dataset =='sice':
           gt_path = glob.glob(os.path.join(args.input_dir, "Label", path.split("/")[-2] + ".*"))[0]
         else:
-          gt_path = glob.glob(img_path[0].replace('INPUT_IMAGES','expert_e_testing_set').split('-')[0] + '*')[0]
+          gt_path = glob.glob(path.replace('INPUT_IMAGES','expert_e_testing_set').split('-')[0] + '*')[0]
         # print(path, gt_path)
         img_gt = cv2.imread(gt_path, 1)
         name = path.replace(args.input_dir, '')
@@ -72,7 +72,7 @@ def main():
         else:
           is_neg = '_N' in name
         if is_neg:
-            print(name)
+            # print(name)
             pred_im, psnr, ssim = single_validate(img, img_gt, model_under)
         else:
             pred_im, psnr, ssim = single_validate(img, img_gt, model_over)
